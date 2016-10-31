@@ -1,0 +1,8 @@
+Aplikacija koja ke vi ovozmozi:
+1. da oznacite koi lokali ste gi posetile
+2. da dadete rejting za posetenite lokali
+3. za sekoja poseta da si zapisite po nekoj komentar
+4. da dodadete nov lokal
+5. da gi izlistate lokalote koi ste gi posetile
+
+poveke detali i drugi funkcionalnosti vo nadernite denovi :)
