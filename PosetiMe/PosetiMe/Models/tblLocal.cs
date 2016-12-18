@@ -14,14 +14,6 @@ namespace PosetiMe.Models
     
     public partial class tblLocal
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblLocal()
-        {
-            this.tblComments = new HashSet<tblComment>();
-            this.tblRatings = new HashSet<tblRating>();
-            this.tblVisits = new HashSet<tblVisit>();
-        }
-    
         public int ID { get; set; }
         public string Name { get; set; }
         public int ID_City { get; set; }
@@ -29,13 +21,5 @@ namespace PosetiMe.Models
         public string Phone { get; set; }
         public string Phone2 { get; set; }
         public byte[] Imege { get; set; }
-    
-        public virtual tblCity tblCity { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblComment> tblComments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblRating> tblRatings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblVisit> tblVisits { get; set; }
     }
 }

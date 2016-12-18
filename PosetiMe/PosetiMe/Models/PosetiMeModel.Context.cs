@@ -13,10 +13,10 @@ namespace PosetiMe.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DB_PosetiMeEntities : DbContext
+    public partial class DBPosetiMeEntities : DbContext
     {
-        public DB_PosetiMeEntities()
-            : base("name=DB_PosetiMeEntities")
+        public DBPosetiMeEntities()
+            : base("name=DBPosetiMeEntities")
         {
         }
     
@@ -25,7 +25,6 @@ namespace PosetiMe.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tblCity> tblCities { get; set; }
         public virtual DbSet<tblComment> tblComments { get; set; }
         public virtual DbSet<tblLocal> tblLocals { get; set; }

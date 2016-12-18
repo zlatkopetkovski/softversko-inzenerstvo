@@ -64,6 +64,6 @@ D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\Microsoft.Owin.Security.OAuth.xm
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\Microsoft.Owin.Security.Google.xml
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\Microsoft.Owin.Security.Twitter.xml
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\visual studio 2015 web\PosetiMe\PosetiMe\obj\Debug\PosetiMe.csprojResolveAssemblyReference.cache
 D:\visual studio 2015 web\PosetiMe\PosetiMe\obj\Debug\PosetiMe.dll
 D:\visual studio 2015 web\PosetiMe\PosetiMe\obj\Debug\PosetiMe.pdb
+D:\visual studio 2015 web\PosetiMe\PosetiMe\obj\Debug\PosetiMe.csprojResolveAssemblyReference.cache

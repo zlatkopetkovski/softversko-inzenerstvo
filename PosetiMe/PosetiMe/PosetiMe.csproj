@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3A510B1B-F050-4CBC-8B0E-A75C56C195C7}</ProjectGuid>
+    <ProjectGuid>{192C0E99-8C52-45A9-AE88-70F22494BDEA}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -170,14 +170,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\tblCitiesController.cs" />
-    <Compile Include="Controllers\tblCommentsController.cs" />
-    <Compile Include="Controllers\tblLocalsController.cs" />
-    <Compile Include="Controllers\tblRatingsController.cs" />
-    <Compile Include="Controllers\tblUsersController.cs" />
-    <Compile Include="Controllers\tblVisitsController.cs" />
+    <Compile Include="Controllers\tblLocalController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -198,9 +194,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PosetiMeModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>PosetiMeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblCity.cs">
       <DependentUpon>PosetiMeModel.tt</DependentUpon>
@@ -261,7 +254,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -295,40 +290,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\tblCities\Create.cshtml" />
-    <Content Include="Views\tblCities\Delete.cshtml" />
-    <Content Include="Views\tblCities\Details.cshtml" />
-    <Content Include="Views\tblCities\Edit.cshtml" />
-    <Content Include="Views\tblCities\Index.cshtml" />
-    <Content Include="Views\tblComments\Create.cshtml" />
-    <Content Include="Views\tblComments\Delete.cshtml" />
-    <Content Include="Views\tblComments\Details.cshtml" />
-    <Content Include="Views\tblComments\Edit.cshtml" />
-    <Content Include="Views\tblComments\Index.cshtml" />
-    <Content Include="Views\tblLocals\Create.cshtml" />
-    <Content Include="Views\tblLocals\Delete.cshtml" />
-    <Content Include="Views\tblLocals\Details.cshtml" />
-    <Content Include="Views\tblLocals\Edit.cshtml" />
-    <Content Include="Views\tblLocals\Index.cshtml" />
-    <Content Include="Views\tblRatings\Create.cshtml" />
-    <Content Include="Views\tblRatings\Delete.cshtml" />
-    <Content Include="Views\tblRatings\Details.cshtml" />
-    <Content Include="Views\tblRatings\Edit.cshtml" />
-    <Content Include="Views\tblRatings\Index.cshtml" />
-    <Content Include="Views\tblUsers\Create.cshtml" />
-    <Content Include="Views\tblUsers\Delete.cshtml" />
-    <Content Include="Views\tblUsers\Details.cshtml" />
-    <Content Include="Views\tblUsers\Edit.cshtml" />
-    <Content Include="Views\tblUsers\Index.cshtml" />
-    <Content Include="Views\tblVisits\Create.cshtml" />
-    <Content Include="Views\tblVisits\Delete.cshtml" />
-    <Content Include="Views\tblVisits\Details.cshtml" />
-    <Content Include="Views\tblVisits\Edit.cshtml" />
-    <Content Include="Views\tblVisits\Index.cshtml" />
+    <Content Include="Views\tblLocal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\PosetiMe\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -357,9 +322,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49996</DevelopmentServerPort>
+          <DevelopmentServerPort>50365</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49996/</IISUrl>
+          <IISUrl>http://localhost:50365/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

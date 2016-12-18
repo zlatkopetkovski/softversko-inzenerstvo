@@ -4,17 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB_PosetiMeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
+    <Schema Namespace="DBPosetiMeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblCity">
           <Key>
             <PropertyRef Name="ID" />
@@ -26,8 +16,8 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_User" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID_User" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ID_Local" Type="int" Nullable="false" />
           <Property Name="Comment" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
@@ -48,7 +38,7 @@
             <PropertyRef Name="ID_User" />
             <PropertyRef Name="ID_Local" />
           </Key>
-          <Property Name="ID_User" Type="int" Nullable="false" />
+          <Property Name="ID_User" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ID_Local" Type="int" Nullable="false" />
           <Property Name="Rate" Type="int" Nullable="false" />
         </EntityType>
@@ -56,423 +46,149 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="25" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ID" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="tblVisit">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_User" Type="int" Nullable="false" />
+          <Property Name="ID_User" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ID_Local" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
         </EntityType>
-        <Association Name="FK_tblComment_tblLocal">
-          <End Role="tblLocal" Type="Self.tblLocal" Multiplicity="1" />
-          <End Role="tblComment" Type="Self.tblComment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblLocal">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblComment">
-              <PropertyRef Name="ID_Local" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblComment_tblUser">
-          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
-          <End Role="tblComment" Type="Self.tblComment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblUser">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblComment">
-              <PropertyRef Name="ID_User" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblLocal_tblCity">
-          <End Role="tblCity" Type="Self.tblCity" Multiplicity="1" />
-          <End Role="tblLocal" Type="Self.tblLocal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCity">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblLocal">
-              <PropertyRef Name="ID_City" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblRating_tblLocal">
-          <End Role="tblLocal" Type="Self.tblLocal" Multiplicity="1" />
-          <End Role="tblRating" Type="Self.tblRating" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblLocal">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblRating">
-              <PropertyRef Name="ID_Local" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblRating_tblUser">
-          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
-          <End Role="tblRating" Type="Self.tblRating" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblUser">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblRating">
-              <PropertyRef Name="ID_User" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVisit_tblLocal">
-          <End Role="tblLocal" Type="Self.tblLocal" Multiplicity="1" />
-          <End Role="tblVisit" Type="Self.tblVisit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblLocal">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblVisit">
-              <PropertyRef Name="ID_Local" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVisit_tblUser">
-          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
-          <End Role="tblVisit" Type="Self.tblVisit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblUser">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblVisit">
-              <PropertyRef Name="ID_User" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="DB_PosetiMeModelStoreContainer">
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="DBPosetiMeModelStoreContainer">
           <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblComment" EntityType="Self.tblComment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblLocal" EntityType="Self.tblLocal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblRating" EntityType="Self.tblRating" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblVisit" EntityType="Self.tblVisit" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_tblComment_tblLocal" Association="Self.FK_tblComment_tblLocal">
-            <End Role="tblLocal" EntitySet="tblLocal" />
-            <End Role="tblComment" EntitySet="tblComment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblComment_tblUser" Association="Self.FK_tblComment_tblUser">
-            <End Role="tblUser" EntitySet="tblUser" />
-            <End Role="tblComment" EntitySet="tblComment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblLocal_tblCity" Association="Self.FK_tblLocal_tblCity">
-            <End Role="tblCity" EntitySet="tblCity" />
-            <End Role="tblLocal" EntitySet="tblLocal" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblRating_tblLocal" Association="Self.FK_tblRating_tblLocal">
-            <End Role="tblLocal" EntitySet="tblLocal" />
-            <End Role="tblRating" EntitySet="tblRating" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblRating_tblUser" Association="Self.FK_tblRating_tblUser">
-            <End Role="tblUser" EntitySet="tblUser" />
-            <End Role="tblRating" EntitySet="tblRating" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVisit_tblLocal" Association="Self.FK_tblVisit_tblLocal">
-            <End Role="tblLocal" EntitySet="tblLocal" />
-            <End Role="tblVisit" EntitySet="tblVisit" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVisit_tblUser" Association="Self.FK_tblVisit_tblUser">
-            <End Role="tblUser" EntitySet="tblUser" />
-            <End Role="tblVisit" EntitySet="tblVisit" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DB_PosetiMeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
+      <Schema Namespace="DBPosetiMeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBPosetiMeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCities" EntityType="DBPosetiMeModel.tblCity" />
+          <EntitySet Name="tblComments" EntityType="DBPosetiMeModel.tblComment" />
+          <EntitySet Name="tblLocals" EntityType="DBPosetiMeModel.tblLocal" />
+          <EntitySet Name="tblRatings" EntityType="DBPosetiMeModel.tblRating" />
+          <EntitySet Name="tblUsers" EntityType="DBPosetiMeModel.tblUser" />
+          <EntitySet Name="tblVisits" EntityType="DBPosetiMeModel.tblVisit" />
+        </EntityContainer>
         <EntityType Name="tblCity">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tblLocals" Relationship="Self.FK_tblLocal_tblCity" FromRole="tblCity" ToRole="tblLocal" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblComment">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_User" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID_User" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ID_Local" Type="Int32" Nullable="false" />
-          <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tblLocal" Relationship="Self.FK_tblComment_tblLocal" FromRole="tblComment" ToRole="tblLocal" />
-          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblComment_tblUser" FromRole="tblComment" ToRole="tblUser" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblLocal">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ID_City" Type="Int32" Nullable="false" />
-          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="true" />
           <Property Name="Phone2" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
           <Property Name="Imege" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="tblCity" Relationship="Self.FK_tblLocal_tblCity" FromRole="tblLocal" ToRole="tblCity" />
-          <NavigationProperty Name="tblComments" Relationship="Self.FK_tblComment_tblLocal" FromRole="tblLocal" ToRole="tblComment" />
-          <NavigationProperty Name="tblRatings" Relationship="Self.FK_tblRating_tblLocal" FromRole="tblLocal" ToRole="tblRating" />
-          <NavigationProperty Name="tblVisits" Relationship="Self.FK_tblVisit_tblLocal" FromRole="tblLocal" ToRole="tblVisit" />
         </EntityType>
         <EntityType Name="tblRating">
           <Key>
             <PropertyRef Name="ID_User" />
             <PropertyRef Name="ID_Local" />
           </Key>
-          <Property Name="ID_User" Type="Int32" Nullable="false" />
+          <Property Name="ID_User" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ID_Local" Type="Int32" Nullable="false" />
           <Property Name="Rate" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblLocal" Relationship="Self.FK_tblRating_tblLocal" FromRole="tblRating" ToRole="tblLocal" />
-          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblRating_tblUser" FromRole="tblRating" ToRole="tblUser" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tblComments" Relationship="Self.FK_tblComment_tblUser" FromRole="tblUser" ToRole="tblComment" />
-          <NavigationProperty Name="tblRatings" Relationship="Self.FK_tblRating_tblUser" FromRole="tblUser" ToRole="tblRating" />
-          <NavigationProperty Name="tblVisits" Relationship="Self.FK_tblVisit_tblUser" FromRole="tblUser" ToRole="tblVisit" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblVisit">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_User" Type="Int32" Nullable="false" />
+          <Property Name="ID_User" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ID_Local" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="tblLocal" Relationship="Self.FK_tblVisit_tblLocal" FromRole="tblVisit" ToRole="tblLocal" />
-          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblVisit_tblUser" FromRole="tblVisit" ToRole="tblUser" />
         </EntityType>
-        <Association Name="FK_tblLocal_tblCity">
-          <End Role="tblCity" Type="Self.tblCity" Multiplicity="1" />
-          <End Role="tblLocal" Type="Self.tblLocal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCity">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblLocal">
-              <PropertyRef Name="ID_City" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblComment_tblLocal">
-          <End Role="tblLocal" Type="Self.tblLocal" Multiplicity="1" />
-          <End Role="tblComment" Type="Self.tblComment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblLocal">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblComment">
-              <PropertyRef Name="ID_Local" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblComment_tblUser">
-          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
-          <End Role="tblComment" Type="Self.tblComment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblUser">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblComment">
-              <PropertyRef Name="ID_User" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblRating_tblLocal">
-          <End Role="tblLocal" Type="Self.tblLocal" Multiplicity="1" />
-          <End Role="tblRating" Type="Self.tblRating" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblLocal">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblRating">
-              <PropertyRef Name="ID_Local" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVisit_tblLocal">
-          <End Role="tblLocal" Type="Self.tblLocal" Multiplicity="1" />
-          <End Role="tblVisit" Type="Self.tblVisit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblLocal">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblVisit">
-              <PropertyRef Name="ID_Local" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblRating_tblUser">
-          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
-          <End Role="tblRating" Type="Self.tblRating" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblUser">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblRating">
-              <PropertyRef Name="ID_User" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVisit_tblUser">
-          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
-          <End Role="tblVisit" Type="Self.tblVisit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblUser">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblVisit">
-              <PropertyRef Name="ID_User" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="DB_PosetiMeEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="tblCities" EntityType="Self.tblCity" />
-          <EntitySet Name="tblComments" EntityType="Self.tblComment" />
-          <EntitySet Name="tblLocals" EntityType="Self.tblLocal" />
-          <EntitySet Name="tblRatings" EntityType="Self.tblRating" />
-          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
-          <EntitySet Name="tblVisits" EntityType="Self.tblVisit" />
-          <AssociationSet Name="FK_tblLocal_tblCity" Association="Self.FK_tblLocal_tblCity">
-            <End Role="tblCity" EntitySet="tblCities" />
-            <End Role="tblLocal" EntitySet="tblLocals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblComment_tblLocal" Association="Self.FK_tblComment_tblLocal">
-            <End Role="tblLocal" EntitySet="tblLocals" />
-            <End Role="tblComment" EntitySet="tblComments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblComment_tblUser" Association="Self.FK_tblComment_tblUser">
-            <End Role="tblUser" EntitySet="tblUsers" />
-            <End Role="tblComment" EntitySet="tblComments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblRating_tblLocal" Association="Self.FK_tblRating_tblLocal">
-            <End Role="tblLocal" EntitySet="tblLocals" />
-            <End Role="tblRating" EntitySet="tblRatings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVisit_tblLocal" Association="Self.FK_tblVisit_tblLocal">
-            <End Role="tblLocal" EntitySet="tblLocals" />
-            <End Role="tblVisit" EntitySet="tblVisits" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblRating_tblUser" Association="Self.FK_tblRating_tblUser">
-            <End Role="tblUser" EntitySet="tblUsers" />
-            <End Role="tblRating" EntitySet="tblRatings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVisit_tblUser" Association="Self.FK_tblVisit_tblUser">
-            <End Role="tblUser" EntitySet="tblUsers" />
-            <End Role="tblVisit" EntitySet="tblVisits" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DB_PosetiMeModelStoreContainer" CdmEntityContainer="DB_PosetiMeEntities">
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="DB_PosetiMeModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="DBPosetiMeModelStoreContainer" CdmEntityContainer="DBPosetiMeEntities">
           <EntitySetMapping Name="tblCities">
-            <EntityTypeMapping TypeName="DB_PosetiMeModel.tblCity">
+            <EntityTypeMapping TypeName="DBPosetiMeModel.tblCity">
               <MappingFragment StoreEntitySet="tblCity">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblComments">
-            <EntityTypeMapping TypeName="DB_PosetiMeModel.tblComment">
+            <EntityTypeMapping TypeName="DBPosetiMeModel.tblComment">
               <MappingFragment StoreEntitySet="tblComment">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
-                <ScalarProperty Name="ID_Local" ColumnName="ID_Local" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ID_Local" ColumnName="ID_Local" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblLocals">
-            <EntityTypeMapping TypeName="DB_PosetiMeModel.tblLocal">
+            <EntityTypeMapping TypeName="DBPosetiMeModel.tblLocal">
               <MappingFragment StoreEntitySet="tblLocal">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID_City" ColumnName="ID_City" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
                 <ScalarProperty Name="Imege" ColumnName="Imege" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="ID_City" ColumnName="ID_City" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblRatings">
-            <EntityTypeMapping TypeName="DB_PosetiMeModel.tblRating">
+            <EntityTypeMapping TypeName="DBPosetiMeModel.tblRating">
               <MappingFragment StoreEntitySet="tblRating">
-                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
-                <ScalarProperty Name="ID_Local" ColumnName="ID_Local" />
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="ID_Local" ColumnName="ID_Local" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUsers">
-            <EntityTypeMapping TypeName="DB_PosetiMeModel.tblUser">
+            <EntityTypeMapping TypeName="DBPosetiMeModel.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblVisits">
-            <EntityTypeMapping TypeName="DB_PosetiMeModel.tblVisit">
+            <EntityTypeMapping TypeName="DBPosetiMeModel.tblVisit">
               <MappingFragment StoreEntitySet="tblVisit">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
-                <ScalarProperty Name="ID_Local" ColumnName="ID_Local" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ID_Local" ColumnName="ID_Local" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

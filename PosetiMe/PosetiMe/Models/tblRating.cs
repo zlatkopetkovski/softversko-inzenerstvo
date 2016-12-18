@@ -14,11 +14,8 @@ namespace PosetiMe.Models
     
     public partial class tblRating
     {
-        public int ID_User { get; set; }
+        public string ID_User { get; set; }
         public int ID_Local { get; set; }
         public int Rate { get; set; }
-    
-        public virtual tblLocal tblLocal { get; set; }
-        public virtual tblUser tblUser { get; set; }
     }
 }

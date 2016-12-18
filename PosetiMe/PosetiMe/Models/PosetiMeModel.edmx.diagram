@@ -4,21 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="45c72029f6c24f6bae96575f1205e4af" Name="Diagram1">
-        <EntityTypeShape EntityType="DB_PosetiMeModel.sysdiagram" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_PosetiMeModel.tblCity" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_PosetiMeModel.tblComment" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_PosetiMeModel.tblLocal" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_PosetiMeModel.tblRating" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_PosetiMeModel.tblUser" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_PosetiMeModel.tblVisit" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
-        <AssociationConnector Association="DB_PosetiMeModel.FK_tblLocal_tblCity" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_PosetiMeModel.FK_tblComment_tblLocal" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_PosetiMeModel.FK_tblComment_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_PosetiMeModel.FK_tblRating_tblLocal" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_PosetiMeModel.FK_tblVisit_tblLocal" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_PosetiMeModel.FK_tblRating_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_PosetiMeModel.FK_tblVisit_tblUser" ManuallyRouted="false" />
+      <Diagram DiagramId="22556481d70b4c2f992360199b9fb2dd" Name="Diagram1">
+        <EntityTypeShape EntityType="DBPosetiMeModel.tblCity" Width="1.5" PointX="0.75" PointY="0.5" />
+        <EntityTypeShape EntityType="DBPosetiMeModel.tblComment" Width="1.5" PointX="2.75" PointY="0.5" />
+        <EntityTypeShape EntityType="DBPosetiMeModel.tblLocal" Width="1.5" PointX="0.75" PointY="3.5" />
+        <EntityTypeShape EntityType="DBPosetiMeModel.tblRating" Width="1.5" PointX="2.75" PointY="3.5" />
+        <EntityTypeShape EntityType="DBPosetiMeModel.tblUser" Width="1.5" PointX="4.75" PointY="0.5" />
+        <EntityTypeShape EntityType="DBPosetiMeModel.tblVisit" Width="1.5" PointX="4.75" PointY="2.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

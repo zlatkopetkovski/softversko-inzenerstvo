@@ -15,11 +15,8 @@ namespace PosetiMe.Models
     public partial class tblVisit
     {
         public int ID { get; set; }
-        public int ID_User { get; set; }
+        public string ID_User { get; set; }
         public int ID_Local { get; set; }
         public System.DateTime Date { get; set; }
-    
-        public virtual tblLocal tblLocal { get; set; }
-        public virtual tblUser tblUser { get; set; }
     }
 }
