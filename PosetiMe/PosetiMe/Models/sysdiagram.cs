@@ -12,14 +12,12 @@ namespace PosetiMe.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblComment
+    public partial class sysdiagram
     {
-        public int ID { get; set; }
-        public string ID_User { get; set; }
-        public int ID_Local { get; set; }
-        public string Comment { get; set; }
-    
-        public virtual tblLocal tblLocal { get; set; }
-        public virtual tblUser tblUser { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

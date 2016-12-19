@@ -157,6 +157,7 @@ namespace PosetiMe.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
+                    //dodavanje na IdUser vo bazata DBPosetiMe
                     using (DBPosetiMeEntities context = new DBPosetiMeEntities())
                     {
                         tblUser dataUser = new tblUser();

@@ -14,7 +14,16 @@ namespace PosetiMe.Models
     
     public partial class tblCity
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblCity()
+        {
+            this.tblLocals = new HashSet<tblLocal>();
+        }
+    
         public int ID { get; set; }
         public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblLocal> tblLocals { get; set; }
     }
 }
