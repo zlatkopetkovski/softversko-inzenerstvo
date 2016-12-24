@@ -50,12 +50,30 @@ namespace PosetiMe.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name,ID_City,Location,Phone,Phone2,Imege")] tblLocal tblLocal)
         {
-            if (ModelState.IsValid)
+            //Оневозможување на внесување на дупликат
+            bool localExist = db.tblLocals.Any(local => local.Name.Equals(tblLocal.Name));
+            if (localExist)
             {
-                db.tblLocals.Add(tblLocal);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                
+                return View("LocalExistError");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.tblLocals.Add(tblLocal);
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        return View("InformationError");
+                    }
+                    return RedirectToAction("Index");
+                }
+            }
+            
 
             ViewBag.ID_City = new SelectList(db.tblCities, "ID", "Name", tblLocal.ID_City);
             return View(tblLocal);

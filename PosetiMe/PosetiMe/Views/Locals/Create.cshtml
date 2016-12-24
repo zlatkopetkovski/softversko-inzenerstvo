@@ -4,12 +4,25 @@
     ViewBag.Title = "Create";
 }
 
+
+
+@*@if (ViewBag.Message != null)
+{
+    <script>
+        var message =  @ViewBag.Message
+                        $(document).ready(function(){
+                        alert('message');
+                        });
+    </script>
+}*@
+
 <h2>Create</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
+
     <div class="form-horizontal">
         <h4>tblLocal</h4>
         <hr />
@@ -73,3 +86,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+
+
