@@ -66,6 +66,7 @@ namespace PosetiMe.Controllers
                     {
                         db.SaveChanges();
                     }
+                    //внес на невалидни информации или недоволно информации за моделот
                     catch (Exception e)
                     {
                         return View("InformationError");

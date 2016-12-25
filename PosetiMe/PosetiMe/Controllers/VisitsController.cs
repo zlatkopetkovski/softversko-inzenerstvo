@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PosetiMe.Models;
+using Microsoft.AspNet.Identity;
 
 namespace PosetiMe.Controllers
 {
@@ -18,7 +19,10 @@ namespace PosetiMe.Controllers
         public ActionResult Index()
         {
             var tblVisits = db.tblVisits.Include(t => t.tblLocal).Include(t => t.tblUser);
-            return View(tblVisits.ToList());
+
+            //служи да се провери во view дали одредената посета е од најавениот корисник 
+            ViewBag.user = User.Identity.GetUserId();
+                return View(tblVisits);
         }
 
         // GET: Visits/Details/5
@@ -40,7 +44,9 @@ namespace PosetiMe.Controllers
         public ActionResult Create()
         {
             ViewBag.ID_Local = new SelectList(db.tblLocals, "ID", "Name");
-            ViewBag.ID_User = new SelectList(db.tblUsers, "ID", "ID");
+            //ViewBag.ID_User = new SelectList(db.tblUsers, "ID", "ID");
+            //ViewBag.ID_User = User.Identity.GetUserId();
+            //ViewBag.Date = DateTime.Now;
             return View();
         }
 
@@ -51,6 +57,8 @@ namespace PosetiMe.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,ID_User,ID_Local,Date")] tblVisit tblVisit)
         {
+            tblVisit.ID_User = User.Identity.GetUserId();
+            tblVisit.Date = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.tblVisits.Add(tblVisit);
