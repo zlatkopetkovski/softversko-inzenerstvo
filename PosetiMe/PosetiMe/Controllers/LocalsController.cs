@@ -33,6 +33,19 @@ namespace PosetiMe.Controllers
             {
                 return HttpNotFound();
             }
+            //земање на сите гласови за оваа локација
+            var getRate = from a in db.tblRatings
+                          where a.ID_Local == id
+                          select a;
+
+            //пресметување на рејтингот за оваа локација
+            float rateing = new int();
+            foreach (tblRating r in getRate)
+            {
+                rateing += r.Rate;
+            }
+            rateing = rateing / getRate.Count();
+            TempData["rateing"] = rateing;//се проследува пресметаниот рејтинг до View-то
             return View(tblLocal);
         }
 
