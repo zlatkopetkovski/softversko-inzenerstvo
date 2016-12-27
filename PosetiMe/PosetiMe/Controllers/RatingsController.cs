@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PosetiMe.Models;
+using Microsoft.AspNet.Identity;
 
 namespace PosetiMe.Controllers
 {
@@ -39,8 +40,9 @@ namespace PosetiMe.Controllers
         // GET: Ratings/Create
         public ActionResult Create()
         {
-            ViewBag.ID_Local = new SelectList(db.tblLocals, "ID", "Name");
-            ViewBag.ID_User = new SelectList(db.tblUsers, "ID", "ID");
+            //ViewBag.ID_Local = new SelectList(db.tblLocals, "ID", "Name");
+            //ViewBag.ID_User = new SelectList(db.tblUsers, "ID", "ID");
+            ViewBag.ID_User = User.Identity.GetUserId();
             return View();
         }
 
@@ -51,13 +53,30 @@ namespace PosetiMe.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID_User,ID_Local,Rate")] tblRating tblRating)
         {
-            if (ModelState.IsValid)
+            //додавање на моето ид и ид од последниот локал кој сум го посетил
+            tblRating.ID_User = User.Identity.GetUserId();
+            int idL = Convert.ToInt32(TempData["idL"]);//податокот се зема од VisitsController
+            if (tblRating.Rate >=1 & tblRating.Rate <= 5)//рејтинг дозволен од 1-5
             {
-                db.tblRatings.Add(tblRating);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                tblRating.ID_Local = idL;
+                var validateNull = from a in db.tblRatings
+                                   where tblRating.ID_User == User.Identity.GetUserId()
+                                   && tblRating.ID_Local == idL
+                                   select a;
+                if (validateNull != null)
+                {
+                    //бришење на стариот рејтинг//NE RABOTE
+                    db.tblRatings.Remove(validateNull.First());
+                    db.SaveChanges();
+                }
+                if (ModelState.IsValid)
+                {
+                    db.tblRatings.Add(tblRating);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-
+            
             ViewBag.ID_Local = new SelectList(db.tblLocals, "ID", "Name", tblRating.ID_Local);
             ViewBag.ID_User = new SelectList(db.tblUsers, "ID", "ID", tblRating.ID_User);
             return View(tblRating);

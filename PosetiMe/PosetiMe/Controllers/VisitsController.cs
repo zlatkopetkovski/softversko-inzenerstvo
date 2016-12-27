@@ -45,8 +45,6 @@ namespace PosetiMe.Controllers
         {
             ViewBag.ID_Local = new SelectList(db.tblLocals, "ID", "Name");
             //ViewBag.ID_User = new SelectList(db.tblUsers, "ID", "ID");
-            //ViewBag.ID_User = User.Identity.GetUserId();
-            //ViewBag.Date = DateTime.Now;
             return View();
         }
 
@@ -63,12 +61,15 @@ namespace PosetiMe.Controllers
             {
                 db.tblVisits.Add(tblVisit);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                //проследување на ID од штотуку внесениот локал до контролетрот Ratings
+                TempData["idL"] = tblVisit.ID_Local;
+                return RedirectToAction("Create", "Ratings");
             }
 
             ViewBag.ID_Local = new SelectList(db.tblLocals, "ID", "Name", tblVisit.ID_Local);
             ViewBag.ID_User = new SelectList(db.tblUsers, "ID", "ID", tblVisit.ID_User);
-            return View(tblVisit);
+            return RedirectToAction("Create", "Rating");
         }
 
         // GET: Visits/Edit/5
