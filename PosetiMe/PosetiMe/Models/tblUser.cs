@@ -18,8 +18,8 @@ namespace PosetiMe.Models
         public tblUser()
         {
             this.tblComments = new HashSet<tblComment>();
-            this.tblRatings = new HashSet<tblRating>();
             this.tblVisits = new HashSet<tblVisit>();
+            this.tblRatings = new HashSet<tblRating>();
         }
     
         public string ID { get; set; }
@@ -27,8 +27,8 @@ namespace PosetiMe.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblComment> tblComments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblRating> tblRatings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblVisit> tblVisits { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblRating> tblRatings { get; set; }
     }
 }

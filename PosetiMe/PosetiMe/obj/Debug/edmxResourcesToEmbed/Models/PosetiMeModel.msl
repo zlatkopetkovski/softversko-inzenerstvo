@@ -43,15 +43,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tblRatings">
-      <EntityTypeMapping TypeName="DBPosetiMeModel.tblRating">
-        <MappingFragment StoreEntitySet="tblRating">
-          <ScalarProperty Name="Rate" ColumnName="Rate" />
-          <ScalarProperty Name="ID_Local" ColumnName="ID_Local" />
-          <ScalarProperty Name="ID_User" ColumnName="ID_User" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tblUsers">
       <EntityTypeMapping TypeName="DBPosetiMeModel.tblUser">
         <MappingFragment StoreEntitySet="tblUser">
@@ -63,6 +54,16 @@
       <EntityTypeMapping TypeName="DBPosetiMeModel.tblVisit">
         <MappingFragment StoreEntitySet="tblVisit">
           <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ID_Local" ColumnName="ID_Local" />
+          <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRatings">
+      <EntityTypeMapping TypeName="DBPosetiMeModel.tblRating">
+        <MappingFragment StoreEntitySet="tblRating">
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
           <ScalarProperty Name="ID_Local" ColumnName="ID_Local" />
           <ScalarProperty Name="ID_User" ColumnName="ID_User" />
           <ScalarProperty Name="ID" ColumnName="ID" />

@@ -40,9 +40,9 @@
   </EntityType>
   <EntityType Name="tblRating">
     <Key>
-      <PropertyRef Name="ID_User" />
-      <PropertyRef Name="ID_Local" />
+      <PropertyRef Name="ID" />
     </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ID_User" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="ID_Local" Type="int" Nullable="false" />
     <Property Name="Rate" Type="int" Nullable="false" />

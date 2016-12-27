@@ -9,16 +9,16 @@
         <EntityTypeShape EntityType="DBPosetiMeModel.tblCity" Width="1.5" PointX="0.75" PointY="4.875" />
         <EntityTypeShape EntityType="DBPosetiMeModel.tblComment" Width="1.5" PointX="5.25" PointY="4.5" />
         <EntityTypeShape EntityType="DBPosetiMeModel.tblLocal" Width="1.5" PointX="3" PointY="4.125" />
-        <EntityTypeShape EntityType="DBPosetiMeModel.tblRating" Width="1.5" PointX="5.25" PointY="7.625" />
         <EntityTypeShape EntityType="DBPosetiMeModel.tblUser" Width="1.5" PointX="3" PointY="0.75" />
         <EntityTypeShape EntityType="DBPosetiMeModel.tblVisit" Width="1.5" PointX="5.25" PointY="1.5" />
         <AssociationConnector Association="DBPosetiMeModel.FK_tblLocal_tblCity" />
         <AssociationConnector Association="DBPosetiMeModel.FK_tblComment_tblLocal" />
         <AssociationConnector Association="DBPosetiMeModel.FK_tblComment_tblUser" />
-        <AssociationConnector Association="DBPosetiMeModel.FK_tblRating_tblLocal" />
         <AssociationConnector Association="DBPosetiMeModel.FK_tblVisit_tblLocal" />
-        <AssociationConnector Association="DBPosetiMeModel.FK_tblRating_tblUser" />
         <AssociationConnector Association="DBPosetiMeModel.FK_tblVisit_tblUser" />
+        <EntityTypeShape EntityType="DBPosetiMeModel.tblRating" Width="1.5" PointX="8.25" PointY="4.875" />
+        <AssociationConnector Association="DBPosetiMeModel.FK_tblRating_tblLocal" />
+        <AssociationConnector Association="DBPosetiMeModel.FK_tblRating_tblUser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

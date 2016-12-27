@@ -23,7 +23,7 @@ namespace PosetiMe.Controllers
         }
 
         // GET: Ratings/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -40,9 +40,8 @@ namespace PosetiMe.Controllers
         // GET: Ratings/Create
         public ActionResult Create()
         {
-            //ViewBag.ID_Local = new SelectList(db.tblLocals, "ID", "Name");
-            //ViewBag.ID_User = new SelectList(db.tblUsers, "ID", "ID");
-            ViewBag.ID_User = User.Identity.GetUserId();
+            ViewBag.ID_Local = new SelectList(db.tblLocals, "ID", "Name");
+            ViewBag.ID_User = new SelectList(db.tblUsers, "ID", "ID");
             return View();
         }
 
@@ -51,39 +50,50 @@ namespace PosetiMe.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_User,ID_Local,Rate")] tblRating tblRating)
+        public ActionResult Create([Bind(Include = "ID,ID_User,ID_Local,Rate")] tblRating tblRating)
         {
             //додавање на моето ид и ид од последниот локал кој сум го посетил
             tblRating.ID_User = User.Identity.GetUserId();
             int idL = Convert.ToInt32(TempData["idL"]);//податокот се зема од VisitsController
-            if (tblRating.Rate >=1 & tblRating.Rate <= 5)//рејтинг дозволен од 1-5
+            tblRating.ID_Local = idL;
+            if (tblRating.Rate >= 1 & tblRating.Rate <= 5)//рејтинг дозволен од 1-5
             {
-                tblRating.ID_Local = idL;
-                var validateNull = from a in db.tblRatings
-                                   where tblRating.ID_User == User.Identity.GetUserId()
-                                   && tblRating.ID_Local == idL
-                                   select a;
-                if (validateNull != null)
+                try
                 {
-                    //бришење на стариот рејтинг//NE RABOTE
-                    db.tblRatings.Remove(validateNull.First());
+                    var validateNull = (from a in db.tblRatings
+                                        where a.ID_User == User.Identity.GetUserId()
+                                        && a.ID_Local == idL
+                                        select a).First();
+                    validateNull.Rate = tblRating.Rate;
                     db.SaveChanges();
                 }
-                if (ModelState.IsValid)
+
+                catch
                 {
-                    db.tblRatings.Add(tblRating);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    if (ModelState.IsValid)
+                    {
+                        db.tblRatings.Add(tblRating);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
                 }
+                
+                
             }
-            
+            //if (ModelState.IsValid)
+            //{
+            //    db.tblRatings.Add(tblRating);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+
             ViewBag.ID_Local = new SelectList(db.tblLocals, "ID", "Name", tblRating.ID_Local);
             ViewBag.ID_User = new SelectList(db.tblUsers, "ID", "ID", tblRating.ID_User);
             return View(tblRating);
         }
 
         // GET: Ratings/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -104,7 +114,7 @@ namespace PosetiMe.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_User,ID_Local,Rate")] tblRating tblRating)
+        public ActionResult Edit([Bind(Include = "ID,ID_User,ID_Local,Rate")] tblRating tblRating)
         {
             if (ModelState.IsValid)
             {
@@ -118,7 +128,7 @@ namespace PosetiMe.Controllers
         }
 
         // GET: Ratings/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -135,7 +145,7 @@ namespace PosetiMe.Controllers
         // POST: Ratings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             tblRating tblRating = db.tblRatings.Find(id);
             db.tblRatings.Remove(tblRating);
