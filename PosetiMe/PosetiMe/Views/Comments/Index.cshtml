@@ -12,18 +12,21 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Comment)
+            Коментари
         </th>
         <th>
             @Html.DisplayNameFor(model => model.tblLocal.Name)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.tblUser.ID)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
+    //if (item.ID_User == ViewBag.user && item.ID_Local == ViewBag.local)
+    //{ 
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Comment)
@@ -31,15 +34,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.tblLocal.Name)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.tblUser.ID)
-        </td>
+        </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
     </tr>
+    @*}*@
 }
 
 </table>

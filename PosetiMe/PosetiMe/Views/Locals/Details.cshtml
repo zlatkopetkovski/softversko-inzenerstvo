@@ -19,39 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone2)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone2)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Imege)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Imege)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tblCity.Name)
+            Град
         </dt>
 
         <dd>
@@ -59,9 +27,43 @@
         </dd>
 
         <dt>
+            Адреса
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            Телефон
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            Телефон 2
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone2)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Imege)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imege)
+        </dd>*@
+
+        
+
+        <dt>
             Рејтинг
         </dt>
-        
+
         <dd>
             @if (Model != null)
             {
@@ -71,6 +73,9 @@
 
     </dl>
 </div>
+<h4>
+    @Html.ActionLink("Прочитај ги моите коментари за овој локал", "Index", "Comments")
+</h4>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")

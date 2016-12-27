@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PosetiMe.Models;
+using Microsoft.AspNet.Identity;
 
 namespace PosetiMe.Controllers
 {
@@ -33,10 +34,19 @@ namespace PosetiMe.Controllers
             {
                 return HttpNotFound();
             }
+
+            string idUser = User.Identity.GetUserId(); //зачувување на IDUser во локална променлива кој ни е потребен за 
+                                                        //наоѓање на коментарите
+
             //земање на сите гласови за оваа локација
             var getRate = from a in db.tblRatings
                           where a.ID_Local == id
                           select a;
+
+            //земање на сите коментари за локалот од одреден корисник
+            var getComments = from c in db.tblComments
+                              where c.ID_Local == id && c.ID_User ==  idUser
+                              select c;
 
             //пресметување на рејтингот за оваа локација
             float rateing = new int();
@@ -46,6 +56,7 @@ namespace PosetiMe.Controllers
             }
             rateing = rateing / getRate.Count();
             TempData["rateing"] = rateing;//се проследува пресметаниот рејтинг до View-то
+            TempData["comments"] = getComments;
             return View(tblLocal);
         }
 

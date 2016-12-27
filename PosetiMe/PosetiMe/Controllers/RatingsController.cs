@@ -57,7 +57,8 @@ namespace PosetiMe.Controllers
             tblRating.ID_User = idU;
             int idL = Convert.ToInt32(TempData["idL"]);//податокот се зема од VisitsController
             tblRating.ID_Local = idL;
-            
+            TempData["idL"] = idL;//проследување на ID од штотуку внесениот (и рејтувн) локал до контролетрот Comments
+
             try
             {
                 var validateNull = (from a in db.tblRatings
@@ -66,6 +67,7 @@ namespace PosetiMe.Controllers
                                     select a).First(); //проверва дали веќе од корисникот постои рејтинг за локалот
                 validateNull.Rate = tblRating.Rate;//го додава новиот рејтинг
                 db.SaveChanges();//ако не постои рејтинг од корисникот за локалот се префрлува во catch
+                
                 return RedirectToAction("Create", "Comments");
             }
 

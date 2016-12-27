@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PosetiMe.Models;
+using Microsoft.AspNet.Identity;
 
 namespace PosetiMe.Controllers
 {
@@ -15,9 +16,12 @@ namespace PosetiMe.Controllers
         private DBPosetiMeEntities db = new DBPosetiMeEntities();
 
         // GET: Comments
+        
         public ActionResult Index()
         {
             var tblComments = db.tblComments.Include(t => t.tblLocal).Include(t => t.tblUser);
+            ViewBag.user = User.Identity.GetUserId();
+            //ViewBag.local = id;
             return View(tblComments.ToList());
         }
 
@@ -51,11 +55,14 @@ namespace PosetiMe.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,ID_User,ID_Local,Comment")] tblComment tblComment)
         {
+            tblComment.ID_User = User.Identity.GetUserId();
+            int idL = Convert.ToInt32(TempData["idL"]);//податокот се зема од RatingsController
+            tblComment.ID_Local = idL;
             if (ModelState.IsValid)
             {
                 db.tblComments.Add(tblComment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Visits");
             }
 
             ViewBag.ID_Local = new SelectList(db.tblLocals, "ID", "Name", tblComment.ID_Local);

@@ -22,7 +22,7 @@ namespace PosetiMe.Controllers
 
             //служи да се провери во view дали одредената посета е од најавениот корисник 
             ViewBag.user = User.Identity.GetUserId();
-                return View(tblVisits);
+                return View(tblVisits.ToList());
         }
 
         // GET: Visits/Details/5
