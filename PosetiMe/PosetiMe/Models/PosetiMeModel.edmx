@@ -197,6 +197,7 @@
           <EntitySet Name="tblCities" EntityType="DBPosetiMeModel.tblCity" />
           <EntitySet Name="tblComments" EntityType="DBPosetiMeModel.tblComment" />
           <EntitySet Name="tblLocals" EntityType="DBPosetiMeModel.tblLocal" />
+          <EntitySet Name="tblRatings" EntityType="DBPosetiMeModel.tblRating" />
           <EntitySet Name="tblUsers" EntityType="DBPosetiMeModel.tblUser" />
           <EntitySet Name="tblVisits" EntityType="DBPosetiMeModel.tblVisit" />
           <AssociationSet Name="FK_tblLocal_tblCity" Association="DBPosetiMeModel.FK_tblLocal_tblCity">
@@ -211,22 +212,21 @@
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblComment" EntitySet="tblComments" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblVisit_tblLocal" Association="DBPosetiMeModel.FK_tblVisit_tblLocal">
-            <End Role="tblLocal" EntitySet="tblLocals" />
-            <End Role="tblVisit" EntitySet="tblVisits" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVisit_tblUser" Association="DBPosetiMeModel.FK_tblVisit_tblUser">
-            <End Role="tblUser" EntitySet="tblUsers" />
-            <End Role="tblVisit" EntitySet="tblVisits" />
-          </AssociationSet>
-          <EntitySet Name="tblRatings" EntityType="DBPosetiMeModel.tblRating" />
           <AssociationSet Name="FK_tblRating_tblLocal" Association="DBPosetiMeModel.FK_tblRating_tblLocal">
             <End Role="tblLocal" EntitySet="tblLocals" />
             <End Role="tblRating" EntitySet="tblRatings" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblVisit_tblLocal" Association="DBPosetiMeModel.FK_tblVisit_tblLocal">
+            <End Role="tblLocal" EntitySet="tblLocals" />
+            <End Role="tblVisit" EntitySet="tblVisits" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblRating_tblUser" Association="DBPosetiMeModel.FK_tblRating_tblUser">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblRating" EntitySet="tblRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVisit_tblUser" Association="DBPosetiMeModel.FK_tblVisit_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblVisit" EntitySet="tblVisits" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="sysdiagram">
@@ -271,8 +271,19 @@
           <Property Name="Imege" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="tblCity" Relationship="DBPosetiMeModel.FK_tblLocal_tblCity" FromRole="tblLocal" ToRole="tblCity" />
           <NavigationProperty Name="tblComments" Relationship="DBPosetiMeModel.FK_tblComment_tblLocal" FromRole="tblLocal" ToRole="tblComment" />
-          <NavigationProperty Name="tblVisits" Relationship="DBPosetiMeModel.FK_tblVisit_tblLocal" FromRole="tblLocal" ToRole="tblVisit" />
           <NavigationProperty Name="tblRatings" Relationship="DBPosetiMeModel.FK_tblRating_tblLocal" FromRole="tblLocal" ToRole="tblRating" />
+          <NavigationProperty Name="tblVisits" Relationship="DBPosetiMeModel.FK_tblVisit_tblLocal" FromRole="tblLocal" ToRole="tblVisit" />
+        </EntityType>
+        <EntityType Name="tblRating">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_User" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Local" Type="Int32" Nullable="false" />
+          <Property Name="Rate" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblLocal" Relationship="DBPosetiMeModel.FK_tblRating_tblLocal" FromRole="tblRating" ToRole="tblLocal" />
+          <NavigationProperty Name="tblUser" Relationship="DBPosetiMeModel.FK_tblRating_tblUser" FromRole="tblRating" ToRole="tblUser" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -280,8 +291,8 @@
           </Key>
           <Property Name="ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblComments" Relationship="DBPosetiMeModel.FK_tblComment_tblUser" FromRole="tblUser" ToRole="tblComment" />
-          <NavigationProperty Name="tblVisits" Relationship="DBPosetiMeModel.FK_tblVisit_tblUser" FromRole="tblUser" ToRole="tblVisit" />
           <NavigationProperty Name="tblRatings" Relationship="DBPosetiMeModel.FK_tblRating_tblUser" FromRole="tblUser" ToRole="tblRating" />
+          <NavigationProperty Name="tblVisits" Relationship="DBPosetiMeModel.FK_tblVisit_tblUser" FromRole="tblUser" ToRole="tblVisit" />
         </EntityType>
         <EntityType Name="tblVisit">
           <Key>
@@ -330,41 +341,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblVisit_tblLocal">
-          <End Type="DBPosetiMeModel.tblLocal" Role="tblLocal" Multiplicity="1" />
-          <End Type="DBPosetiMeModel.tblVisit" Role="tblVisit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblLocal">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblVisit">
-              <PropertyRef Name="ID_Local" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVisit_tblUser">
-          <End Type="DBPosetiMeModel.tblUser" Role="tblUser" Multiplicity="1" />
-          <End Type="DBPosetiMeModel.tblVisit" Role="tblVisit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblUser">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tblVisit">
-              <PropertyRef Name="ID_User" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="tblRating">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="ID_User" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ID_Local" Type="Int32" Nullable="false" />
-          <Property Name="Rate" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblLocal" Relationship="DBPosetiMeModel.FK_tblRating_tblLocal" FromRole="tblRating" ToRole="tblLocal" />
-          <NavigationProperty Name="tblUser" Relationship="DBPosetiMeModel.FK_tblRating_tblUser" FromRole="tblRating" ToRole="tblUser" />
-        </EntityType>
         <Association Name="FK_tblRating_tblLocal">
           <End Type="DBPosetiMeModel.tblLocal" Role="tblLocal" Multiplicity="1" />
           <End Type="DBPosetiMeModel.tblRating" Role="tblRating" Multiplicity="*" />
@@ -377,6 +353,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblVisit_tblLocal">
+          <End Type="DBPosetiMeModel.tblLocal" Role="tblLocal" Multiplicity="1" />
+          <End Type="DBPosetiMeModel.tblVisit" Role="tblVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocal">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblVisit">
+              <PropertyRef Name="ID_Local" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblRating_tblUser">
           <End Type="DBPosetiMeModel.tblUser" Role="tblUser" Multiplicity="1" />
           <End Type="DBPosetiMeModel.tblRating" Role="tblRating" Multiplicity="*" />
@@ -385,6 +373,18 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="tblRating">
+              <PropertyRef Name="ID_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVisit_tblUser">
+          <End Type="DBPosetiMeModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="DBPosetiMeModel.tblVisit" Role="tblVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblVisit">
               <PropertyRef Name="ID_User" />
             </Dependent>
           </ReferentialConstraint>
@@ -437,6 +437,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblRatings">
+            <EntityTypeMapping TypeName="DBPosetiMeModel.tblRating">
+              <MappingFragment StoreEntitySet="tblRating">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="ID_Local" ColumnName="ID_Local" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblUsers">
             <EntityTypeMapping TypeName="DBPosetiMeModel.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
@@ -448,16 +458,6 @@
             <EntityTypeMapping TypeName="DBPosetiMeModel.tblVisit">
               <MappingFragment StoreEntitySet="tblVisit">
                 <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="ID_Local" ColumnName="ID_Local" />
-                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblRatings">
-            <EntityTypeMapping TypeName="DBPosetiMeModel.tblRating">
-              <MappingFragment StoreEntitySet="tblRating">
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
                 <ScalarProperty Name="ID_Local" ColumnName="ID_Local" />
                 <ScalarProperty Name="ID_User" ColumnName="ID_User" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

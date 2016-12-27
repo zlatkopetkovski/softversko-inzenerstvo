@@ -29,8 +29,8 @@ namespace PosetiMe.Models
         public virtual DbSet<tblCity> tblCities { get; set; }
         public virtual DbSet<tblComment> tblComments { get; set; }
         public virtual DbSet<tblLocal> tblLocals { get; set; }
+        public virtual DbSet<tblRating> tblRatings { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
         public virtual DbSet<tblVisit> tblVisits { get; set; }
-        public virtual DbSet<tblRating> tblRatings { get; set; }
     }
 }

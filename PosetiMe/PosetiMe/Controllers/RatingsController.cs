@@ -53,39 +53,31 @@ namespace PosetiMe.Controllers
         public ActionResult Create([Bind(Include = "ID,ID_User,ID_Local,Rate")] tblRating tblRating)
         {
             //додавање на моето ид и ид од последниот локал кој сум го посетил
-            tblRating.ID_User = User.Identity.GetUserId();
+            string idU = User.Identity.GetUserId();
+            tblRating.ID_User = idU;
             int idL = Convert.ToInt32(TempData["idL"]);//податокот се зема од VisitsController
             tblRating.ID_Local = idL;
-            if (tblRating.Rate >= 1 & tblRating.Rate <= 5)//рејтинг дозволен од 1-5
+            
+            try
             {
-                try
-                {
-                    var validateNull = (from a in db.tblRatings
-                                        where a.ID_User == User.Identity.GetUserId()
-                                        && a.ID_Local == idL
-                                        select a).First();
-                    validateNull.Rate = tblRating.Rate;
-                    db.SaveChanges();
-                }
-
-                catch
-                {
-                    if (ModelState.IsValid)
-                    {
-                        db.tblRatings.Add(tblRating);
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
-                }
-                
-                
+                var validateNull = (from a in db.tblRatings
+                                    where a.ID_User == idU
+                                    && a.ID_Local == idL
+                                    select a).First(); //проверва дали веќе од корисникот постои рејтинг за локалот
+                validateNull.Rate = tblRating.Rate;//го додава новиот рејтинг
+                db.SaveChanges();//ако не постои рејтинг од корисникот за локалот се префрлува во catch
+                return RedirectToAction("Create", "Comments");
             }
-            //if (ModelState.IsValid)
-            //{
-            //    db.tblRatings.Add(tblRating);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
+
+            catch
+            {
+                if (ModelState.IsValid)
+                {
+                    db.tblRatings.Add(tblRating); //се додава нов запис со податоците од tblRating локалната променлива
+                    db.SaveChanges();
+                    return RedirectToAction("Create", "Comments");
+                }
+            }
 
             ViewBag.ID_Local = new SelectList(db.tblLocals, "ID", "Name", tblRating.ID_Local);
             ViewBag.ID_User = new SelectList(db.tblUsers, "ID", "ID", tblRating.ID_User);
