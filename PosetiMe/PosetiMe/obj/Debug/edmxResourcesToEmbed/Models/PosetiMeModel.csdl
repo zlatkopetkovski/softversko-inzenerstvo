@@ -59,10 +59,11 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ID_User" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="ID_Local" Type="Int32" Nullable="false" />
     <Property Name="Comment" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="tblLocal" Relationship="DBPosetiMeModel.FK_tblComment_tblLocal" FromRole="tblComment" ToRole="tblLocal" />
     <NavigationProperty Name="tblUser" Relationship="DBPosetiMeModel.FK_tblComment_tblUser" FromRole="tblComment" ToRole="tblUser" />
   </EntityType>

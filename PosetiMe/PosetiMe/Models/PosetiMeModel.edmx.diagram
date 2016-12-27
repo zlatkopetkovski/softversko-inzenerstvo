@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="22556481d70b4c2f992360199b9fb2dd" Name="Diagram1" ZoomLevel="64">
-        <EntityTypeShape EntityType="DBPosetiMeModel.sysdiagram" Width="1.5" PointX="7.75" PointY="1.125" />
+        <EntityTypeShape EntityType="DBPosetiMeModel.sysdiagram" Width="1.5" PointX="7.75" PointY="1" />
         <EntityTypeShape EntityType="DBPosetiMeModel.tblCity" Width="1.5" PointX="0.75" PointY="4.875" />
-        <EntityTypeShape EntityType="DBPosetiMeModel.tblComment" Width="1.5" PointX="5.25" PointY="4.5" />
+        <EntityTypeShape EntityType="DBPosetiMeModel.tblComment" Width="1.5" PointX="5.25" PointY="1.5" />
         <EntityTypeShape EntityType="DBPosetiMeModel.tblLocal" Width="1.5" PointX="3" PointY="4.125" />
         <EntityTypeShape EntityType="DBPosetiMeModel.tblRating" Width="1.5" PointX="5.25" PointY="7.5" />
         <EntityTypeShape EntityType="DBPosetiMeModel.tblUser" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="DBPosetiMeModel.tblVisit" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="DBPosetiMeModel.tblVisit" Width="1.5" PointX="5.25" PointY="4.5" />
         <AssociationConnector Association="DBPosetiMeModel.FK_tblLocal_tblCity" />
         <AssociationConnector Association="DBPosetiMeModel.FK_tblComment_tblLocal" />
         <AssociationConnector Association="DBPosetiMeModel.FK_tblComment_tblUser" />

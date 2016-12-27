@@ -1,4 +1,4 @@
-﻿@model PosetiMe.Models.tblLocal
+﻿@model PosetiMe.Models.tblLocal 
 
 @{
     ViewBag.Title = "Details";
@@ -73,10 +73,45 @@
 
     </dl>
 </div>
-<h4>
-    @Html.ActionLink("Прочитај ги моите коментари за овој локал", "Index", "Comments")
-</h4>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<table class="table">
+    <tr>
+        <th>
+            Дата
+        </th>
+        <th>
+            Коментар
+        </th>
+        
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewBag.comments)
+    {
+        <tr>
+            <td>
+                @item.Date
+            </td>
+            <td>
+                @item.Comment
+            </td>
+            
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.tblUser.ID)
+                </td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+        
+    }
+
+</table>
+

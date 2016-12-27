@@ -26,10 +26,11 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_User" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ID_Local" Type="int" Nullable="false" />
           <Property Name="Comment" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="tblLocal">
           <Key>
@@ -251,10 +252,11 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_User" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ID_Local" Type="Int32" Nullable="false" />
           <Property Name="Comment" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="tblLocal" Relationship="DBPosetiMeModel.FK_tblComment_tblLocal" FromRole="tblComment" ToRole="tblLocal" />
           <NavigationProperty Name="tblUser" Relationship="DBPosetiMeModel.FK_tblComment_tblUser" FromRole="tblComment" ToRole="tblUser" />
         </EntityType>
@@ -417,6 +419,7 @@
           <EntitySetMapping Name="tblComments">
             <EntityTypeMapping TypeName="DBPosetiMeModel.tblComment">
               <MappingFragment StoreEntitySet="tblComment">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="ID_Local" ColumnName="ID_Local" />
                 <ScalarProperty Name="ID_User" ColumnName="ID_User" />

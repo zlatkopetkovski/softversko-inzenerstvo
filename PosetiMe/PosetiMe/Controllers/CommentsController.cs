@@ -21,7 +21,7 @@ namespace PosetiMe.Controllers
         {
             var tblComments = db.tblComments.Include(t => t.tblLocal).Include(t => t.tblUser);
             ViewBag.user = User.Identity.GetUserId();
-            //ViewBag.local = id;
+           // ViewBag.local = id;
             return View(tblComments.ToList());
         }
 
@@ -58,6 +58,7 @@ namespace PosetiMe.Controllers
             tblComment.ID_User = User.Identity.GetUserId();
             int idL = Convert.ToInt32(TempData["idL"]);//податокот се зема од RatingsController
             tblComment.ID_Local = idL;
+            tblComment.Date = DateTime.Now.Date;
             if (ModelState.IsValid)
             {
                 db.tblComments.Add(tblComment);

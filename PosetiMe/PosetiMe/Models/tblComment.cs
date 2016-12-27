@@ -18,6 +18,7 @@ namespace PosetiMe.Models
         public string ID_User { get; set; }
         public int ID_Local { get; set; }
         public string Comment { get; set; }
+        public System.DateTime Date { get; set; }
     
         public virtual tblLocal tblLocal { get; set; }
         public virtual tblUser tblUser { get; set; }

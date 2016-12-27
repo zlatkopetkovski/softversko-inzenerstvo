@@ -56,7 +56,7 @@ namespace PosetiMe.Controllers
             }
             rateing = rateing / getRate.Count();
             TempData["rateing"] = rateing;//се проследува пресметаниот рејтинг до View-то
-            TempData["comments"] = getComments;
+            ViewBag.comments = getComments.ToList();//се проследуваат пронајдените коментари до view-то
             return View(tblLocal);
         }
 

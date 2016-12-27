@@ -21,10 +21,11 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ID_User" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="ID_Local" Type="int" Nullable="false" />
     <Property Name="Comment" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="tblLocal">
     <Key>

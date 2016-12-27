@@ -37,7 +37,32 @@ namespace PosetiMe.Controllers
             {
                 return HttpNotFound();
             }
-            return View(tblVisit);
+            tblLocal tblLocal = db.tblLocals.Find(tblVisit.ID_Local);
+
+            int idLocal = tblLocal.ID; // потребно ни е за прашалникот за коментарите и рејтингот
+            string idUser = User.Identity.GetUserId(); //зачувување на IDUser во локална променлива кој ни е потребен за 
+                                                       //наоѓање на коментарите
+
+            //земање на сите гласови за оваа локација
+            var getRate = from a in db.tblRatings
+                          where a.ID_Local == idLocal
+                          select a;
+
+            //земање на сите коментари за локалот од одреден корисник
+            var getComments = from c in db.tblComments
+                              where c.ID_Local == idLocal && c.ID_User == idUser
+                              select c;
+
+            //пресметување на рејтингот за оваа локација
+            float rateing = new int();
+            foreach (tblRating r in getRate)
+            {
+                rateing += r.Rate;
+            }
+            rateing = rateing / getRate.Count();
+            TempData["rateing"] = rateing;//се проследува пресметаниот рејтинг до View-то
+            ViewBag.comments = getComments.ToList();//се проследуваат пронајдените коментари до view-то
+            return View(tblLocal);
         }
 
         // GET: Visits/Create

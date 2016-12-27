@@ -23,6 +23,7 @@
     <EntitySetMapping Name="tblComments">
       <EntityTypeMapping TypeName="DBPosetiMeModel.tblComment">
         <MappingFragment StoreEntitySet="tblComment">
+          <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Comment" ColumnName="Comment" />
           <ScalarProperty Name="ID_Local" ColumnName="ID_Local" />
           <ScalarProperty Name="ID_User" ColumnName="ID_User" />
