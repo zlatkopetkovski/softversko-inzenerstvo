@@ -8,11 +8,15 @@ using System.Web;
 using System.Web.Mvc;
 using PosetiMe.Models;
 using Microsoft.AspNet.Identity;
+using NLog;
 
 namespace PosetiMe.Controllers
 {
     public class LocalsController : Controller
     {
+        
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        
         private DBPosetiMeEntities db = new DBPosetiMeEntities();
 
         // GET: Locals
@@ -90,7 +94,7 @@ namespace PosetiMe.Controllers
                     try
                     {
                         db.SaveChanges();
-                        //LogClass.WriteInformationLog("Внесен е нов локал со име " + tblLocal.Name);
+                        logger .Info("Внесен е нов локал со име "+ tblLocal.Name +".");
                     }
                     //внес на невалидни информации или недоволно информации за моделот
                     catch (Exception e)
