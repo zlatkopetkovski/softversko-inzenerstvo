@@ -67,6 +67,3 @@ D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\Microsoft.Owin.Security.Microsof
 D:\visual studio 2015 web\PosetiMe\PosetiMe\obj\Debug\PosetiMe.dll
 D:\visual studio 2015 web\PosetiMe\PosetiMe\obj\Debug\PosetiMe.pdb
 D:\visual studio 2015 web\PosetiMe\PosetiMe\obj\Debug\PosetiMe.csprojResolveAssemblyReference.cache
-D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\nunit.framework.dll
-D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
-D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\nunit.framework.xml
