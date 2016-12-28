@@ -9,9 +9,7 @@ namespace PosetiMeTests
     {
         [TestMethod]
         public void TestMethod1()
-
         {
-            
         }
     }
 }

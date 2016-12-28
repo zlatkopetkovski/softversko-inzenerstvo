@@ -74,6 +74,7 @@ namespace PosetiMe.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name,ID_City,Location,Phone,Phone2,Imege")] tblLocal tblLocal)
         {
+            
             //Оневозможување на внесување на дупликат
             bool localExist = db.tblLocals.Any(local => local.Name.Equals(tblLocal.Name));
             if (localExist)
@@ -89,6 +90,7 @@ namespace PosetiMe.Controllers
                     try
                     {
                         db.SaveChanges();
+                        //LogClass.WriteInformationLog("Внесен е нов локал со име " + tblLocal.Name);
                     }
                     //внес на невалидни информации или недоволно информации за моделот
                     catch (Exception e)
