@@ -4,31 +4,29 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Локали</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Внеси нов локал", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Име
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location)
+            Град
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Phone)
+            Адреса
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Phone2)
+            Телефон
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Imege)
+            Телефон 2
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tblCity.Name)
-        </th>
+                
         <th></th>
     </tr>
 
@@ -36,6 +34,9 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblCity.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Location)
@@ -46,16 +47,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Phone2)
         </td>
+       
         <td>
-            @Html.DisplayFor(modelItem => item.Imege)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tblCity.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Детали", "Details", new { id=item.ID })
         </td>
     </tr>
 }

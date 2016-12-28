@@ -1,57 +1,13 @@
-﻿@*@model PosetiMe.Models.tblVisit
+﻿@model PosetiMe.Models.tblLocal
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Детали</h2>
 
 <div>
-    <h4>tblVisit</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tblLocal.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tblLocal.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tblUser.ID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tblUser.ID)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>*@
-
-
-@model PosetiMe.Models.tblLocal
-
-@{
-    ViewBag.Title = "Details";
-}
-
-<h2>Details</h2>
-
-<div>
-    <h4>tblLocal</h4>
+    <h4>за локалот</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -93,17 +49,6 @@
         <dd>
             @Html.DisplayFor(model => model.Phone2)
         </dd>
-
-        @*<dt>
-                @Html.DisplayNameFor(model => model.Imege)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Imege)
-            </dd>*@
-
-
-
         <dt>
             Рејтинг
         </dt>
@@ -119,8 +64,7 @@
 </div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Назад кон сите мои посети", "Index")
 </p>
 
 <table class="table">
@@ -144,17 +88,7 @@
             <td>
                 @item.Comment
             </td>
-
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.tblUser.ID)
-                </td>*@
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
         </tr>
-
     }
 
 </table>

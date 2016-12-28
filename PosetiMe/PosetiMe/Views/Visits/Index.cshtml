@@ -13,15 +13,10 @@
     <tr>
         <th>
             Дата
-            @*@Html.DisplayNameFor(model => model.Date)*@
         </th>
         <th>
             Локал
-            @*@Html.DisplayNameFor(model => model.tblLocal.Name)*@
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.tblUser.ID)
-        </th>*@
         <th></th>
     </tr>
  
@@ -36,13 +31,8 @@
         <td>
             @Html.DisplayFor(Model => item.tblLocal.Name)
         </td>
-        @*<td>
-            @Html.DisplayFor(Model => item.tblUser.ID)
-        </td>*@
         <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |*@
-            @Html.ActionLink("Детали", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Избриши", "Delete", new { id = item.ID })
+            @Html.ActionLink("Детали", "Details", new { id = item.ID }) 
         </td>
     </tr>}
 }

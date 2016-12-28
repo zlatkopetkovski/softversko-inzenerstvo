@@ -52,7 +52,7 @@ namespace PosetiMe.Controllers
             {
                 db.tblCities.Add(tblCity);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "Locals");
             }
 
             return View(tblCity);
