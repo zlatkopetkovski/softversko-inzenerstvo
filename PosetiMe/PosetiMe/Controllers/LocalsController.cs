@@ -14,7 +14,6 @@ namespace PosetiMe.Controllers
 {
     public class LocalsController : Controller
     {
-        
         private static Logger logger = LogManager.GetCurrentClassLogger();
         
         private DBPosetiMeEntities db = new DBPosetiMeEntities();

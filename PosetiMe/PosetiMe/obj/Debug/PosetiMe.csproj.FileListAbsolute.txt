@@ -10,6 +10,7 @@ D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\roslyn\System.Reflection.Metadat
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\roslyn\vbc.exe
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\roslyn\VBCSCompiler.exe
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\roslyn\VBCSCompiler.exe.config
+D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\NLog.config
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\PosetiMe.dll.config
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\PosetiMe.dll
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\PosetiMe.pdb
@@ -31,6 +32,7 @@ D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\Microsoft.Owin.Security.OAuth.dl
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\Microsoft.Owin.Security.Twitter.dll
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\Microsoft.Web.Infrastructure.dll
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\Newtonsoft.Json.dll
+D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\NLog.dll
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\Owin.dll
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\System.Web.Helpers.dll
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\System.Web.Mvc.dll
@@ -41,6 +43,7 @@ D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\System.Web.WebPages.dll
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\System.Web.WebPages.Razor.dll
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\WebGrease.dll
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\NLog.xml
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\System.Web.Helpers.xml
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\System.Web.Mvc.xml
 D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\System.Web.Optimization.xml
@@ -67,6 +70,3 @@ D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\Microsoft.Owin.Security.Microsof
 D:\visual studio 2015 web\PosetiMe\PosetiMe\obj\Debug\PosetiMe.dll
 D:\visual studio 2015 web\PosetiMe\PosetiMe\obj\Debug\PosetiMe.pdb
 D:\visual studio 2015 web\PosetiMe\PosetiMe\obj\Debug\PosetiMe.csprojResolveAssemblyReference.cache
-D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\NLog.config
-D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\NLog.dll
-D:\visual studio 2015 web\PosetiMe\PosetiMe\bin\NLog.xml
